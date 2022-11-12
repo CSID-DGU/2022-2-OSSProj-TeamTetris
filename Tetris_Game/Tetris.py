@@ -21,7 +21,7 @@ speed_change = 2  # 레벨별 블록 하강 속도 상승 정도
 
 board_width = 800  # 전체 창의 가로 길이
 board_height = 450  # 전체 창의 세로 길이
-board_rate = 0.5625  # 가로세로비율
+board_rate = 0.5625  # 가로세로비율m
 
 min_width = 400
 min_height = 225
@@ -460,8 +460,12 @@ def draw_board(next1, next2, hold, score, level, goal):
     )
 
     # Draw 2 next minos
-    grid_n1 = tetrimino.mino_map[next1 - 1][0]
-    grid_n2 = tetrimino.mino_map[next2 - 1][0]
+# ------------------------------------------------------------------------------------------------------------------- #
+    grid_n1 = mino_map_selector(next1, 0)
+    grid_n2 = mino_map_selector(next2, 0)
+# ------------------------------------------------------------------------------------------------------------------- #
+    # grid_n1 = tetrimino.mino_map[next1 - 1][0]
+    # grid_n2 = tetrimino.mino_map[next2 - 1][0]
 
     for i in range(mino_matrix_y):
         for j in range(mino_matrix_x):
@@ -483,8 +487,11 @@ def draw_board(next1, next2, hold, score, level, goal):
 
     
     # Draw hold mino
-    grid_h = tetrimino.mino_map[hold - 1][0]  # (배열이라-1) 기본 모양
+    # grid_h = tetrimino.mino_map[hold - 1][0]  # (배열이라-1) 기본 모양
     if hold_mino != -1:  # hold 존재X
+# ------------------------------------------------------------------------------------------------------------------- #
+        grid_h = mino_map_selector(hold, 0)
+# ------------------------------------------------------------------------------------------------------------------- #
         for i in range(mino_matrix_y):
             for j in range(mino_matrix_x):
                 dx = int(board_width * 0.045) + sidebar_width + \
@@ -556,8 +563,12 @@ def draw_hardboard(next1, next2, hold, score, remaining_time, line):
     )
 
     # Draw 2 next minos
-    grid_n1 = tetrimino.mino_map[next1 - 1][0]
-    grid_n2 = tetrimino.mino_map[next2 - 1][0]
+# ------------------------------------------------------------------------------------------------------------------- #
+    grid_n1 = mino_map_selector(next1, 0)
+    grid_n2 = mino_map_selector(next2, 0)
+# ------------------------------------------------------------------------------------------------------------------- #
+    # grid_n1 = tetrimino.mino_map[next1 - 1][0]
+    # grid_n2 = tetrimino.mino_map[next2 - 1][0]
 
     for i in range(mino_matrix_y):
         for j in range(mino_matrix_x):
@@ -578,9 +589,12 @@ def draw_hardboard(next1, next2, hold, score, remaining_time, line):
                 draw_block_image(dx2, dy2, ui_variables.t_block[grid_n2[i][j]])
 
     # Draw hold mino
-    # grid_h = tetrimino.mino_map[hold - 1][0]  # (배열이라-1) 기본 모양
+    ## grid_h = tetrimino.mino_map[hold - 1][0]  # (배열이라-1) 기본 모양
 
     # if hold_mino != -1:  # hold 존재X
+## ------------------------------------------------------------------------------------------------------------------- #
+    #     grid_h = mino_selector(hold, 0)
+## ------------------------------------------------------------------------------------------------------------------- #
     #     for i in range(mino_matrix_y):
     #         for j in range(mino_matrix_x):
     #             dx = int(board_width * 0.045) + sidebar_width + \
@@ -653,8 +667,12 @@ def draw_hardboard_change(next1, next2, hold, score, remaining_time, line):
     )
 
     # Draw 2 next minos
-    grid_n1 = tetrimino.mino_map[next1 - 1][0]
-    grid_n2 = tetrimino.mino_map[next2 - 1][0]
+# ------------------------------------------------------------------------------------------------------------------- #
+    grid_n1 = mino_map_selector(next1, 0)
+    grid_n2 = mino_map_selector(next2, 0)
+  # ------------------------------------------------------------------------------------------------------------------- #
+    # grid_n1 = tetrimino.mino_map[next1 - 1][0]
+    # grid_n2 = tetrimino.mino_map[next2 - 1][0]
 
     for i in range(mino_matrix_y):
         for j in range(mino_matrix_x):
@@ -675,9 +693,12 @@ def draw_hardboard_change(next1, next2, hold, score, remaining_time, line):
                 draw_block_image(dx2, dy2, ui_variables.t_block[grid_n2[i][j]])
 
     # Draw hold mino
-    grid_h = tetrimino.mino_map[hold - 1][0]  # (배열이라-1) 기본 모양
+    # grid_h = tetrimino.mino_map[hold - 1][0]  # (배열이라-1) 기본 모양
 
     if hold_mino != -1:  # hold 존재X
+# ------------------------------------------------------------------------------------------------------------------- #
+        grid_h = mino_map_selector(hold, 0)
+# ------------------------------------------------------------------------------------------------------------------- #
         for i in range(mino_matrix_y):
             for j in range(mino_matrix_x):
                 dx = int(board_width * 0.045) + sidebar_width + \
@@ -748,7 +769,10 @@ def draw_1Pboard(next, hold, current_key):
     )
 
     # Draw next mino
-    grid_n = tetrimino.mino_map[next - 1][0]  # (배열이라-1) 다음 블록의 원래 모양
+# ------------------------------------------------------------------------------------------------------------------- #
+    grid_n = mino_map_selector(next, 0)
+# ------------------------------------------------------------------------------------------------------------------- #
+    # grid_n = tetrimino.mino_map[next - 1][0]  # (배열이라-1) 다음 블록의 원래 모양
 
     for i in range(mino_matrix_y):
         for j in range(mino_matrix_x):
@@ -760,9 +784,12 @@ def draw_1Pboard(next, hold, current_key):
                 draw_block_image(dx, dy, ui_variables.t_block[grid_n[i][j]])
 
     # Draw hold mino
-    grid_h = tetrimino.mino_map[hold - 1][0]  # (배열이라-1) 기본 모양
+    # grid_h = tetrimino.mino_map[hold - 1][0]  # (배열이라-1) 기본 모양
 
     if hold_mino != -1:  # 기본값이 -1. 즉 hold블록 존재할 떄
+# ------------------------------------------------------------------------------------------------------------------- #
+        grid_h = mino_map_selector(hold, 0)
+# ------------------------------------------------------------------------------------------------------------------- #
         for i in range(mino_matrix_y):
             for j in range(mino_matrix_x):
                 dx = int(board_width * 0.045) + sidebar_width + \
@@ -861,7 +888,10 @@ def draw_2Pboard(next, hold, current_key_2P):
     )
 
     # Draw next mino
-    grid_n = tetrimino.mino_map[next - 1][0]
+# ------------------------------------------------------------------------------------------------------------------- #
+    grid_n = mino_map_selector(next, 0)
+# ------------------------------------------------------------------------------------------------------------------- #
+    # grid_n = tetrimino.mino_map[next - 1][0]
 
     for i in range(mino_matrix_y):  # 16개의 그리드 칸에서 true인 값만 뽑아서 draw.rect
         for j in range(mino_matrix_x):
@@ -873,9 +903,12 @@ def draw_2Pboard(next, hold, current_key_2P):
                 draw_block_image(dx, dy, ui_variables.t_block[grid_n[i][j]])
 
     # Draw hold mino
-    grid_h = tetrimino.mino_map[hold - 1][0]
+    # grid_h = tetrimino.mino_map[hold - 1][0]
 
     if hold_mino_2P != -1:  # 기본값이 -1. 즉 hold블록 존재할 떄
+# ------------------------------------------------------------------------------------------------------------------- #
+        grid_h = mino_map_selector(hold, 0)
+# ------------------------------------------------------------------------------------------------------------------- #
         for i in range(mino_matrix_y):
             for j in range(mino_matrix_x):
                 dx = int(board_width * 0.045) + sidebar_width + \
@@ -968,7 +1001,10 @@ def draw_multiboard(next_1P, hold_1P, next_2P, hold_2P, current_key, current_key
 
 # Draw a tetrimino
 def draw_mino(x, y, mino, r, matrix):  # mino는 모양, r은 회전된 모양 중 하나
-    grid = tetrimino.mino_map[mino - 1][r]  # grid : 출력할 테트리스
+# ------------------------------------------------------------------------------------------------------------------- #
+    grid = mino_map_selector(mino, r)
+# ------------------------------------------------------------------------------------------------------------------- #
+    # grid = tetrimino.mino_map[mino - 1][r]  # grid : 출력할 테트리스
 
     tx, ty = x, y
     # 테트리스가 바닥에 존재하면 true -> not이니까 바닥에 없는 상태
@@ -990,7 +1026,10 @@ def draw_mino(x, y, mino, r, matrix):  # mino는 모양, r은 회전된 모양 �
 
 # Erase a tetrimino
 def erase_mino(x, y, mino, r, matrix):
-    grid = tetrimino.mino_map[mino - 1][r]
+# ------------------------------------------------------------------------------------------------------------------- #
+    grid = mino_map_selector(mino, r)
+# ------------------------------------------------------------------------------------------------------------------- #
+    # grid = tetrimino.mino_map[mino - 1][r]
 
     # Erase ghost
     for j in range(board_y + 1):
@@ -1007,7 +1046,10 @@ def erase_mino(x, y, mino, r, matrix):
 
 # Returns true if mino is at bottom
 def is_bottom(x, y, mino, r, matrix):
-    grid = tetrimino.mino_map[mino - 1][r]  # grid : 출력할 테트리스
+# ------------------------------------------------------------------------------------------------------------------- #
+    grid = mino_map_selector(mino, r)
+# ------------------------------------------------------------------------------------------------------------------- #
+    # grid = tetrimino.mino_map[mino - 1][r]  # grid : 출력할 테트리스
 
     for i in range(mino_matrix_y):
         for j in range(mino_matrix_x):
@@ -1023,7 +1065,10 @@ def is_bottom(x, y, mino, r, matrix):
 
 # Returns true if mino is at the left edge
 def is_leftedge(x, y, mino, r, matrix):
-    grid = tetrimino.mino_map[mino - 1][r]  # grid : 출력할 테트리스
+# ------------------------------------------------------------------------------------------------------------------- #
+    grid = mino_map_selector(mino, r)
+# ------------------------------------------------------------------------------------------------------------------- #
+    # grid = tetrimino.mino_map[mino - 1][r]  # grid : 출력할 테트리스
 
     for i in range(mino_matrix_y):
         for j in range(mino_matrix_x):
@@ -1039,7 +1084,10 @@ def is_leftedge(x, y, mino, r, matrix):
 
 
 def is_rightedge(x, y, mino, r, matrix):
-    grid = tetrimino.mino_map[mino - 1][r]  # grid : 출력할 테트리스
+# ------------------------------------------------------------------------------------------------------------------- #
+    grid = mino_map_selector(mino, r)
+# ------------------------------------------------------------------------------------------------------------------- #
+    # grid = tetrimino.mino_map[mino - 1][r]  # grid : 출력할 테트리스
 
     for i in range(mino_matrix_y):
         for j in range(mino_matrix_x):
@@ -1053,10 +1101,14 @@ def is_rightedge(x, y, mino, r, matrix):
 
 
 def is_turnable_r(x, y, mino, r, matrix):
+# ------------------------------------------------------------------------------------------------------------------- #
     if r != 3:  # 회전모양 총 0, 1, 2, 3번째 총 4가지 있음
-        grid = tetrimino.mino_map[mino - 1][r + 1]  # 3이 아니면 그 다음 모양
+        grid = mino_map_selector(mino, r + 1)
+        # grid = tetrimino.mino_map[mino - 1][r + 1]  # 3이 아니면 그 다음 모양
     else:
-        grid = tetrimino.mino_map[mino - 1][0]  # 3이면 0번째 모양으로
+        grid = mino_map_selector(mino, 0)
+        # grid = tetrimino.mino_map[mino - 1][0]  # 3이면 0번째 모양으로
+# ------------------------------------------------------------------------------------------------------------------- #
 
     for i in range(mino_matrix_y):
         for j in range(mino_matrix_x):
@@ -1072,10 +1124,14 @@ def is_turnable_r(x, y, mino, r, matrix):
 
 
 def is_turnable_l(x, y, mino, r, matrix):
+# ------------------------------------------------------------------------------------------------------------------- #
     if r != 0:  # 회전모양 총 0, 1, 2, 3번째 총 4가지 있음
-        grid = tetrimino.mino_map[mino - 1][r - 1]  # 0이 아니면 그 다음 모양
+        grid = mino_map_selector(mino, r - 1)
+        # grid = tetrimino.mino_map[mino - 1][r - 1]  # 0이 아니면 그 다음 모양
     else:
-        grid = tetrimino.mino_map[mino - 1][3]  # 0이면 3번째 모양으로
+        grid = mino_map_selector(mino, 3)
+        # grid = tetrimino.mino_map[mino - 1][3]  # 0이면 3번째 모양으로
+# ------------------------------------------------------------------------------------------------------------------- #
 
     for i in range(mino_matrix_y):
         for j in range(mino_matrix_x):
@@ -1092,7 +1148,10 @@ def is_turnable_l(x, y, mino, r, matrix):
 
 
 def is_stackable(mino, matrix):
-    grid = tetrimino.mino_map[mino - 1][0]  # grid : 출력할 테트리스
+# ------------------------------------------------------------------------------------------------------------------- #
+    grid = mino_map_selector(mino, 0)
+# ------------------------------------------------------------------------------------------------------------------- #
+    # grid = tetrimino.mino_map[mino - 1][0]  # grid : 출력할 테트리스
 
     for i in range(mino_matrix_y):
         for j in range(mino_matrix_x):
@@ -1266,7 +1325,23 @@ def set_initial_values():
 
     game_status = ''
     pygame.mixer.music.load(selected_bgm)
+# ------------------------------------------------------------------------------------------------------------------- #
+def mino_map_selector(b, r):
+    if start:   # easy mode
+        return tetrimino.mino_easy_map[b - 1][r]
+    elif hard:  # hard mode
+        return tetrimino.mino_hard_map[b - 1][r]
+    else :
+        return tetrimino.mino_map[b - 1][r]
 
+def mino_selector():
+    if start:   # easy mode
+        return randint(1, len(tetrimino.mino_easy_map))
+    elif hard:  # hard mode
+        return randint(1, len(tetrimino.mino_hard_map))
+    else :
+        return randint(1, len(tetrimino.mino_map))
+# ------------------------------------------------------------------------------------------------------------------- #
 
 set_initial_values()
 pygame.time.set_timer(pygame.USEREVENT, 10)
@@ -1591,7 +1666,9 @@ while not done:
                         if is_stackable(next_mino1, matrix):
                             mino = next_mino1
                             next_mino1 = next_mino2
-                            next_mino2 = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino2 = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                             dx, dy = 3, 0
                             rotation = 0
                             hold = False
@@ -1666,7 +1743,9 @@ while not done:
                             hold_mino = mino
                             mino = next_mino1
                             next_mino1 = next_mino2
-                            next_mino2 = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino2 = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                         else:
                             hold_mino, mino = mino, hold_mino
                         dx, dy = 3, 0
@@ -1856,7 +1935,9 @@ while not done:
                         if is_stackable(next_mino1, matrix):
                             mino = next_mino1
                             next_mino1 = next_mino2
-                            next_mino2 = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino2 = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                             dx, dy = 3, 0
                             rotation = 0
                             hold = False
@@ -1974,7 +2055,9 @@ while not done:
                             hold_mino = mino
                             mino = next_mino1
                             next_mino1 = next_mino2
-                            next_mino2 = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino2 = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                         else:
                             hold_mino, mino = mino, hold_mino
                         dx, dy = 3, 0
@@ -2221,7 +2304,9 @@ while not done:
 
                         if is_stackable(next_mino1, matrix):
                             mino = next_mino1
-                            next_mino1 = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino1 = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                             dx, dy = 3, 0
                             rotation = 0
                             hold = False
@@ -2252,7 +2337,9 @@ while not done:
 
                         if is_stackable(next_mino1_2P, matrix_2P):
                             mino_2P = next_mino1_2P
-                            next_mino1_2P = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino1_2P = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                             dx_2P, dy_2P = 3, 0
                             rotation_2P = 0
                             hold_2P = False
@@ -2349,7 +2436,9 @@ while not done:
                         if hold_mino == -1:
                             hold_mino = mino
                             mino = next_mino1
-                            next_mino1 = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino1 = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                         else:
                             hold_mino, mino = mino, hold_mino
                         dx, dy = 3, 0
@@ -2365,7 +2454,9 @@ while not done:
                         if hold_mino_2P == -1:
                             hold_mino_2P = mino_2P
                             mino_2P = next_mino1_2P
-                            next_mino1_2P = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino1_2P = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                         else:
                             hold_mino_2P, mino_2P = mino_2P, hold_mino_2P
                         dx_2P, dy_2P = 3, 0
@@ -2708,7 +2799,9 @@ while not done:
 
                         if is_stackable(next_mino1, matrix):
                             mino = next_mino1
-                            next_mino1 = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino1 = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                             dx, dy = 3, 0
                             rotation = 0
                             hold = False
@@ -2740,7 +2833,9 @@ while not done:
 
                         if is_stackable(next_mino1_2P, matrix_2P):
                             mino_2P = next_mino1_2P
-                            next_mino1_2P = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino1_2P = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                             dx_2P, dy_2P = 3, 0
                             rotation_2P = 0
                             hold_2P = False
@@ -2852,7 +2947,9 @@ while not done:
                         if hold_mino == -1:
                             hold_mino = mino
                             mino = next_mino1
-                            next_mino1 = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino1 = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                         else:
                             hold_mino, mino = mino, hold_mino
                         dx, dy = 3, 0
@@ -2868,7 +2965,9 @@ while not done:
                         if hold_mino_2P == -1:
                             hold_mino_2P = mino_2P
                             mino_2P = next_mino1_2P
-                            next_mino1_2P = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino1_2P = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                         else:
                             hold_mino_2P, mino_2P = mino_2P, hold_mino_2P
                         dx_2P, dy_2P = 3, 0
@@ -3213,7 +3312,9 @@ while not done:
                         if is_stackable(next_mino1, matrix):
                             mino = next_mino1
                             next_mino1 = next_mino2
-                            next_mino2 = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino2 = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                             dx, dy = 3, 0
                             rotation = 0
                             hold = False
@@ -3350,7 +3451,9 @@ while not done:
                             hold_mino = mino
                             mino = next_mino1
                             next_mino1 = next_mino2
-                            next_mino2 = randint(1, 7)
+# ------------------------------------------------------------------------------------------------------------------- #
+                            next_mino2 = mino_selector()
+# ------------------------------------------------------------------------------------------------------------------- #
                         else:
                             hold_mino, mino = mino, hold_mino
                         dx, dy = 3, 0
