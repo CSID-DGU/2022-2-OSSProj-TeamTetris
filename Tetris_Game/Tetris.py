@@ -209,6 +209,8 @@ back_button_image = 'Tetris_Game/assets/vector/Back.png'
 clicked_back_button_image = 'Tetris_Game/assets/vector/clicked_Back.png'
 volume_vector = 'Tetris_Game/assets/vector/volume_vector.png'
 clicked_volume_vector = 'Tetris_Game/assets/vector/clicked_volume_vector.png'
+size_vector = 'Tetris_Game/assets/vector/size_vector.png'
+clicked_size_vector = 'Tetris_Game/assets/vector/clicked_size_vector.png'
 keyboard_vector = 'Tetris_Game/assets/vector/keyboard_vector.png'
 clicked_keyboard_vector = 'Tetris_Game/assets/vector/clicked_keyboard_vector.png'
 screen_vector = 'Tetris_Game/assets/vector/screen_vector.png'
@@ -358,8 +360,9 @@ background1_check_button = button(board_width, board_height, 0.5, 0.25, 0.1875, 
 background2_check_button = button(board_width, board_height, 0.5, 0.45, 0.1875, 0.1444, clicked_background2_image)  # nyc (default background)
 background3_check_button = button(board_width, board_height, 0.5, 0.65, 0.1875, 0.1444, background3_image)  # uk
 
-volume_icon = button(board_width, board_height, 0.4, 0.5, 0.12, 0.23, volume_vector)
-screen_icon = button(board_width, board_height, 0.6, 0.5, 0.12, 0.23, screen_vector)
+volume_icon = button(board_width, board_height, 0.3, 0.5, 0.12, 0.23, volume_vector)
+screen_icon = button(board_width, board_height, 0.7, 0.5, 0.12, 0.23, screen_vector)
+size_icon = button(board_width, board_height, 0.5, 0.5, 0.12, 0.23, size_vector)
 
 
 #음소거 추가#
@@ -384,7 +387,7 @@ button_list = [
     resume_button, menu_button2, help_button, pause_quit_button, pause_setting_button,
     leaderboard_icon, mute_button, default_button, restart_button, back_button, ok_button, effect_plus_button, effect_minus_button,
     sound_plus_button, sound_minus_button, mute_check_button, background1_check_button, background2_check_button, background3_check_button,
-    volume_icon, screen_icon, effect_sound_off_button, music_sound_off_button, effect_sound_on_button, music_sound_on_button,
+    volume_icon, screen_icon, size_icon, effect_sound_off_button, music_sound_off_button, effect_sound_on_button, music_sound_on_button,
     BGM1_sound_on_button, BGM2_sound_on_button, BGM3_sound_on_button, multi_restart_button, multi_menu_button, back_button2, training_restart_button, training_multi_start_button, training_hard_start_button]
 
 
@@ -3818,6 +3821,7 @@ while not done:
 
         screen_icon.draw(screen, (0, 0, 0))  # rgb(0,0,0) = 검정색
         volume_icon.draw(screen, (0, 0, 0))
+        size_icon.draw(screen, (0, 0, 0))
 
         back_button.draw(screen, (0, 0, 0))
 
@@ -3840,6 +3844,11 @@ while not done:
                     volume_icon.image = clicked_volume_vector
                 else:
                     volume_icon.image = volume_vector
+
+                if size_icon.isOver(pos):
+                    size_icon.image = clicked_size_vector
+                else:
+                    size_icon.image = size_vector     
 
                 if screen_icon.isOver(pos):
                     screen_icon.image = clicked_screen_vector
